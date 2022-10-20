@@ -1,6 +1,6 @@
 # arcade
 
-Team names: Lilly, Griffon, Luke
+Team names: Lilly, Griffin, Luke
 
 Project desciption: Make a program that runs both breakout and galaga.
 
@@ -14,6 +14,7 @@ INTERFACES:
       - .move()
   - Collidable
       - .getHitBox()
+      - .hangleCollision()
   - Drawable
       - .getSelf()
       - .getX()
@@ -61,15 +62,15 @@ OTHER:
 
   - GameView
       - Methods: 
-  - CollisionHandler
-      - Methods: 
+  - CollisionChecker
+      - Methods: checkCollision
   - FileReader
   - FileWriter
 
 ASSIGNMENTS:
 
   - Lilly
-      - GameView, CollisionHandler, BreakoutLevel, GalagaLevel
+      - GameView, CollisionChecker, BreakoutLevel, GalagaLevel
       - Moveable, Collidable, Drawable
   - Luke
       - GalagaLevel 2-3
