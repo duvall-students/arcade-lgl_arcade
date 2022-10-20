@@ -3,6 +3,12 @@ package levels;
 import javafx.scene.paint.Paint;
 import things.Drawable;
 
+/**
+ * This is the basic Galaga Level
+ * @author Lilly Purrington
+ *
+ */
+
 public class GalagaLevel extends Level {
 
 	private Drawable[] drawables;

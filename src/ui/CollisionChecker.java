@@ -3,8 +3,8 @@ package ui;
 import things.Collidable;
 
 /**
- * Checks for and handles collisions
- * @author lillypurrington
+ * Checks for collisions
+ * @author Lilly Purrington
  *
  */
 

@@ -1,12 +1,17 @@
 package levels;
 
 import javafx.scene.paint.Paint;
-import things.Brick;
 import things.Collidable;
 import things.Drawable;
 import things.Movable;
 import ui.GameView;
 
+
+/**
+ * This is the basic breakout level without power bricks
+ * @author Lilly Purrington
+ *
+ */
 public class BreakoutLevel extends Level {
 	
 
@@ -15,7 +20,6 @@ public class BreakoutLevel extends Level {
 	public static final int BRICK_SIZE = GameView.SIZE / BRICK_COLUMNS;
 
 	
-	private Brick[] myBricks;
 	private Drawable[] drawables;
 	private Movable[] movables;
 	private Collidable[] collidables;
