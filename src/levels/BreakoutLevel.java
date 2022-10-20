@@ -2,7 +2,9 @@ package levels;
 
 import javafx.scene.paint.Paint;
 import things.Brick;
+import things.Collidable;
 import things.Drawable;
+import things.Movable;
 import ui.GameView;
 
 public class BreakoutLevel extends Level {
@@ -15,41 +17,23 @@ public class BreakoutLevel extends Level {
 	
 	private Brick[] myBricks;
 	private Drawable[] drawables;
+	private Movable[] movables;
+	private Collidable[] collidables;
 
 	
-	public BreakoutLevel(int width, int height, Paint background) {		
+	public BreakoutLevel(int width, int height, Paint background) {
 		super.setupGame(width,height, background, drawables);
 	}
 	
 	
 	
+	@Override
 	//This is mainly just checking collisions every frame and reacting to collisions
 	public int run() {
-		//getBall().move();
 		
-		//there is probably a better way than a big if else chain but I can't think of it right now
+		super.genericRun(movables, collidables);
 		
-		/* Rewriting
-		Brick collidedBrick = CollisionChecker.checkBrickCollision(myBricks, getBall());
-		if (collidedBrick != null) {
-			collidedWithBrick(collidedBrick, myBricks);
-		}else if (CollisionChecker.checkPaddleCollision(getPaddle(), getBall()) || Collision.checkTopWallCollision(getBall())) {
-			getBall().changeCourse(false);
-		}else if(CollisionChecker.checkHorizontalWallCollision(getBall())) {
-			getBall().changeCourse(true);
-		}else if (CollisionChecker.checkBottomWallCollision(getBall())) {
-			return Level.END_CODE;
-		}
-		*/
-		
-		//updateScore();
-		
-		if (checkWin(myBricks)) {
-			return Level.WIN_CODE;
-		}
-		
-		
-		return Level.CONTINUE_CODE;
+		return 0;
 	}
 
 

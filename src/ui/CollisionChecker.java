@@ -8,9 +8,10 @@ import things.Collidable;
  *
  */
 
-public class CollisionHandler {
+public class CollisionChecker {
 	
 	public static boolean checkCollision(Collidable primary, Collidable secondary) {
 		return primary.getHitBox().intersects(secondary.getHitBox().getBoundsInLocal());
 	}
+
 }
