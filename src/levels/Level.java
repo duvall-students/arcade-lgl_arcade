@@ -4,7 +4,10 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
 import things.Brick;
+import things.Collidable;
 import things.Drawable;
+import things.Movable;
+import ui.CollisionChecker;
 
 public abstract class Level {
 
@@ -16,12 +19,29 @@ public abstract class Level {
 	protected Scene myScene;
 	private Group root;
     private int score;
+
     
 	//Returns the relevent code (either win, continue, or end)
 	public abstract int run();
-    
+	
 	//remakes the level while carrying over the score
 	public abstract void remake(int score);
+	
+	public void genericRun(Movable[] movables, Collidable[] collidables) {
+		for(Movable m : movables) {
+			m.move();
+		}
+		
+		for (int i = 0; i < collidables.length-1; i++) {
+			for (int j = i+1; j < collidables.length; j++) {
+				if(CollisionChecker.checkCollision(collidables[i], collidables[j])) {
+					collidables[i].handleCollision(collidables[j]);
+				}
+			}
+		}
+	}
+    
+	
 	
     protected void setupGame(int width, int height, Paint background, Drawable[] drawables){
 		root = new Group();
