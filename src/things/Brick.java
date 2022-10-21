@@ -9,6 +9,8 @@ import javafx.scene.shape.Rectangle;
  * Brick Class
  * Creates a Brick object and
  * details to be used by gameView
+ * @author Luke Freudenthal
+ * 
  */
 
 public class Brick {
