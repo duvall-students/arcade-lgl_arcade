@@ -3,6 +3,12 @@ package testing;
 import javafx.scene.shape.Rectangle;
 import things.Collidable;
 
+/**
+ * A class used to test the collidable interface
+ * @author Lilly Purrington
+ *
+ */
+
 public class TestCollider implements Collidable{
 
 	private Rectangle rectangle;

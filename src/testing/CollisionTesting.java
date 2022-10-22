@@ -2,6 +2,12 @@ package testing;
 
 import static org.junit.Assert.*;
 
+/**
+ * This is testing the collision logic
+ * Will add more when more classes are finished
+ * @author Lilly Purrington
+ */
+
 import org.junit.Test;
 
 import ui.CollisionChecker;
