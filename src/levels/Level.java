@@ -17,7 +17,7 @@ import ui.CollisionChecker;
  *
  */
 public abstract class Level {
-
+	
 	public static final int END_CODE = -1;
 	public static final int CONTINUE_CODE = 0;
 	public static final int WIN_CODE = 1;
@@ -25,12 +25,12 @@ public abstract class Level {
 	
 	protected Scene myScene;
 	private Group root;
-    private int score;
-    private FileReader fileReader = new FileReader();
-    private int highScoreOffset = 40;
-    private int scoreOffset = 50;
-    private Text currentScore;
-
+	private int score;
+	private FileReader fileReader = new FileReader();
+	private int highScoreOffset = 40;
+	private int scoreOffset = 50;
+	private Text currentScore;
+	
 
     
 	//Returns the relevant code (either win, continue, or end)
