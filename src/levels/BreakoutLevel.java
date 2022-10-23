@@ -4,7 +4,6 @@ import javafx.scene.paint.Paint;
 import things.Collidable;
 import things.Drawable;
 import things.Movable;
-import ui.GameView;
 
 
 /**
@@ -17,7 +16,6 @@ public class BreakoutLevel extends Level {
 
 	public static final int BRICK_ROWS = 4;
 	public static final int BRICK_COLUMNS = 20;
-	public static final int BRICK_SIZE = GameView.SIZE / BRICK_COLUMNS;
 
 	
 	private Drawable[] drawables;
