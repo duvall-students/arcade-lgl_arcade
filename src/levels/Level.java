@@ -5,10 +5,13 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
+import things.Brick;
 import things.Collidable;
 import things.Drawable;
+import things.Enemy;
 import things.Movable;
 import ui.CollisionChecker;
+import ui.GameView;
 
 
 /**
@@ -81,7 +84,7 @@ public abstract class Level {
 		return score;
 	}
 	
-    /* Can't add until enemy class is created (not my job)
+
 	public boolean checkWin(Enemy[] myEnemies) {
 		boolean allDestroyed = true;
 		
@@ -93,7 +96,7 @@ public abstract class Level {
 
 		return allDestroyed;
 	}
-	*/
+
 	
 	protected void setScore(int score) {
 		this.score = score;
@@ -103,20 +106,39 @@ public abstract class Level {
 		currentScore.setText("Current Score: " + score);
 	}
 
-	/* Waiting on other people (though still needs some work from me anyway)
+	//Sets up where all the bricks are
+	//The spacer variable is how far apart the bricks should be
+	//I need to figure out how to combine this with initilizeEnemies
+	public Brick[] initilizeBricks(int brickRows, int brickColumns, int columnSpacer, int rowSpacer) {
+		int brickSize = (GameView.SIZE/brickColumns) - columnSpacer;
+		Brick[] myBricks = new Brick[brickRows * brickColumns];
+		for(int row = 0; row < brickRows; row++) {
+			for (int col = 0; col < brickColumns; col ++) {
+				int x = col * brickSize + col * columnSpacer;
+				int y = row * brickSize + row * rowSpacer;
+				Brick brick = new Brick(x,y,brickSize,brickSize);
+				myBricks[row*brickColumns + col] = brick;				
+			}
+		}
+		return myBricks;
+	}
+	
 	//Sets up where all the enemies are
-	public Enemy[] initilizeEnemies(int enemyRows, int enemyColumns, int enemySize, int rowSpacer, int columnSpacer) {
+	//The spacer variable is how far apart the bricks should be
+	//I need to figure out how to combine this with initilizeEnemies
+	public Enemy[] initilizeEnemies(int enemyRows, int enemyColumns, int columnSpacer, int rowSpacer) {
+		int enemySize = (GameView.SIZE/enemyColumns) - columnSpacer;
 		Enemy[] myEnemies = new Enemy[enemyRows * enemyColumns];
 		for(int row = 0; row < enemyRows; row++) {
 			for (int col = 0; col < enemyColumns; col ++) {
-				int y = row * enemySize;
-				int x = col * enemySize;
-				Enemy brick = new Enemy(x,y,enemySize,enemySize);
-				myEnemies[row*enemyColumns + col] = brick;
+				int x = col * enemySize + col * columnSpacer;
+				int y = row * enemySize + row * rowSpacer;
+				Enemy enemy = new Enemy(x,y,enemySize,enemySize);
+				myEnemies[row*enemyColumns + col] = enemy;				
 			}
 		}
 		return myEnemies;
 	}
-	*/
+	
 	
 }
