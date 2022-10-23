@@ -9,9 +9,11 @@ import javafx.scene.shape.Rectangle;
  * Brick Class
  * Creates a Brick object and
  * details to be used by gameView
+ * @author Luke Freudenthal
+ * 
  */
 
-public class Brick {
+public class Brick extends Target {
 	
 	private Paint brickColor = setRandomColor();
 	private Rectangle brick;
@@ -25,26 +27,56 @@ public class Brick {
 	    brick.setX(positionX);
 	    brick.setY(positionY);
 	}
+
+	@Override
+	public void handleCollision(Collidable collidable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean checkIfRemoved() {
+		return brick.getX() == REMOVAL_LOCATION;
+	}
 	
-	public Rectangle getRectangle() {
+	// GETTERS
+	
+	@Override
+	public Rectangle getHitBox() {
 		return brick;
 	}
+	
 	public Paint getColor() {
 		return brickColor;
 	}
-	public double getXCoordinate() {
+	
+	@Override
+	public double getX() {
 		return brick.getX();
 	}
-	public double getYCoordinate() {
+	
+	@Override
+	public double getY() {
 		return brick.getY();
 	}
+	
+	@Override
+	public Rectangle getSelf() {
+		return brick;
+	}
+	
+	// SETTERS
+	
 	private Color setRandomColor() {
 		Random rand = new Random();
 		return Color.color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
 	}
 	
+	@Override
 	public void remove() {
 		brick.setX(REMOVAL_LOCATION);
 	}
+	
+	
 
 }
