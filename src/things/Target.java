@@ -8,14 +8,14 @@ public abstract class Target implements Collidable {
 	public abstract Rectangle getHitBox();
 	
 	//Removes the specified target
-	public abstract void remove(Rectangle target);
+	public abstract void remove();
 	
 	//Checks if the given target has been removed
-	public abstract boolean checkIfRemoved(Rectangle target);
+	public abstract boolean checkIfRemoved();
 	
-	public abstract int getX();
+	public abstract double getX();
 	
-	public abstract int getY();
+	public abstract double getY();
 	
 	public abstract Rectangle getSelf();
 

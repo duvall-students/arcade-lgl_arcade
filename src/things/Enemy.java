@@ -1,5 +1,6 @@
 package things;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 /*
  * Enemy Class to create and move enemies
@@ -9,6 +10,15 @@ import javafx.scene.shape.Rectangle;
  */
 public class Enemy extends Target implements Movable {
 
+	private Rectangle enemy;
+	public static final int REMOVAL_LOCATION = -5000;
+	
+	public Enemy(int positionX, int positionY, int width, int height) {
+		enemy = new Rectangle(width, height, Color.BLACK);
+		enemy.setX(positionX);
+		enemy.setY(positionY);
+	}
+	
 	public void move() {
 		
 	}
@@ -20,39 +30,38 @@ public class Enemy extends Target implements Movable {
 	}
 
 	@Override
-	public Rectangle getHitBox() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean checkIfRemoved() {
+		return enemy.getX() == REMOVAL_LOCATION;
+	}
+	
+	// GETTERS
+	
+	@Override
+	public double getX() {
+		return enemy.getX();
 	}
 
 	@Override
-	public void remove(Rectangle target) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean checkIfRemoved(Rectangle target) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getY() {
+		return enemy.getY();
 	}
 
 	@Override
 	public Rectangle getSelf() {
-		// TODO Auto-generated method stub
-		return null;
+		return enemy;
 	}
+	
+	@Override
+	public Rectangle getHitBox() {
+		return enemy;
+	}
+	
+	// SETTERS
+	
+	@Override
+	public void remove() {
+		enemy.setX(REMOVAL_LOCATION);
+	}
+	
 
 }
