@@ -51,6 +51,7 @@ public abstract class Level {
 			for (int j = i+1; j < collidables.length; j++) {
 				if(CollisionChecker.checkCollision(collidables[i], collidables[j])) {
 					collidables[i].handleCollision(collidables[j]);
+					collidables[j].handleCollision(collidables[i]);
 				}
 			}
 		}
