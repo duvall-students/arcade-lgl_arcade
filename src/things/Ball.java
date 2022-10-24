@@ -14,7 +14,7 @@ import ui.GameView;
  *  altered/added to for this project)
  */
 
-public class Ball {
+public class Ball extends Player {
 
 	public static final Paint BALL_COLOR = Color.RED;
 	public static final int BALL_RADIUS = 10;
@@ -43,11 +43,11 @@ public class Ball {
 	/*
 	 * Getters for X and Y Coordinates 
 	 */
+	@Override
 	public double getXCoordinate() {
 		return ball.getCenterX();
 	}
 	public double getYCoordinate() {
-
 		return ball.getCenterY();
 	}
 	
