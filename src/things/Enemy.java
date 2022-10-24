@@ -1,7 +1,9 @@
 package things;
 
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import ui.CollisionChecker;
 /*
  * Enemy Class to create and move enemies
  * 
@@ -10,25 +12,46 @@ import javafx.scene.shape.Rectangle;
  */
 public class Enemy extends Target implements Movable {
 
-	private Rectangle enemy;
+	Rectangle enemy;
+	
+	private double xVelocity = 1;
+	private double yVelocity = 0;
+	private Point2D myVelocity;
+	
 	public static final int REMOVAL_LOCATION = -5000;
 	
 	public Enemy(int positionX, int positionY, int width, int height) {
 		enemy = new Rectangle(width, height, Color.BLACK);
 		enemy.setX(positionX);
 		enemy.setY(positionY);
+		myVelocity = new Point2D(xVelocity, yVelocity);
 	}
 	
+	//Moves enemy left and right, depending on velocity
+	@Override
 	public void move() {
+		enemy.setX(enemy.getX()+myVelocity.getX());
 		
 	}
 	
+	//Included to possibly handle bouncing on the walls
+	//Still need to determine movement on the Y-axis
+	public void changeCourse(boolean isHorizontalBounce) {
+		if(isHorizontalBounce) {
+			myVelocity = new Point2D(-myVelocity.getX(), myVelocity.getY());
+		}
+	}
+	
+	//Uses CollisionCheck to determine contact between two shapes
 	@Override
 	public void handleCollision(Collidable collidable) {
-		// TODO Auto-generated method stub
+		if(CollisionChecker.checkCollision((Collidable) enemy, collidable)) {
+			remove();
+		}
 
 	}
 
+	//Checks location of the enemy to determine if removed
 	@Override
 	public boolean checkIfRemoved() {
 		return enemy.getX() == REMOVAL_LOCATION;
@@ -62,6 +85,4 @@ public class Enemy extends Target implements Movable {
 	public void remove() {
 		enemy.setX(REMOVAL_LOCATION);
 	}
-	
-
 }
