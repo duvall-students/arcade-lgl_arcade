@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-public class Paddle {
+public class Paddle extends Player {
 
 	private final Paint PADDLE_COLOR = Color.BLACK;
 

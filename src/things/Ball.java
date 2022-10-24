@@ -14,7 +14,7 @@ import ui.GameView;
  *  altered/added to for this project)
  */
 
-public class Ball extends Player {
+public class Ball extends Projectile {
 
 	public static final Paint BALL_COLOR = Color.RED;
 	public static final int BALL_RADIUS = 10;
