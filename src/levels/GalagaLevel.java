@@ -1,9 +1,12 @@
 package levels;
 
+import java.util.ArrayList;
+
 import javafx.scene.paint.Paint;
 import things.Collidable;
 import things.Drawable;
 import things.Movable;
+import things.Ship;
 
 /**
  * This is the basic Galaga Level
@@ -13,12 +16,19 @@ import things.Movable;
 
 public class GalagaLevel extends Level {
 
-	private Drawable[] drawables;
-	private Movable[] movables;
-	private Collidable[] collidables;	
+	private ArrayList<Drawable> drawables;
+	private ArrayList<Movable> movables;
+	private ArrayList<Collidable> collidables;
+	private Ship ship;
+	
+	
 	
 	public GalagaLevel(int width, int height, Paint background) {
-		super.setupGame(width,height, background, drawables);
+		drawables = new ArrayList<Drawable>();
+		movables = new ArrayList<Movable>();
+		collidables = new ArrayList<Collidable>();
+		
+		super.setupGame(width,height, background, drawables, ship);
 	}
 
 	@Override
@@ -32,7 +42,7 @@ public class GalagaLevel extends Level {
 	public void remake(int score) {
 		//Remake player, collidables, and movables
 		
-		super.setupGame((int) getScene().getWidth(),(int) getScene().getHeight(), getScene().getFill(), drawables);
+		super.setupGame((int) getScene().getWidth(),(int) getScene().getHeight(), getScene().getFill(), drawables, ship);
 		setScore(score);
 	}
 

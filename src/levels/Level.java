@@ -1,5 +1,7 @@
 package levels;
 
+import java.util.ArrayList;
+
 import io.FileReader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -10,6 +12,8 @@ import things.Collidable;
 import things.Drawable;
 import things.Enemy;
 import things.Movable;
+import things.Player;
+import things.Target;
 import ui.CollisionChecker;
 import ui.GameView;
 
@@ -42,16 +46,16 @@ public abstract class Level {
 	//Re-makes the level while carrying over the score
 	public abstract void remake(int score);
 	
-	public void genericRun(Movable[] movables, Collidable[] collidables) {
+	public boolean genericRun(ArrayList<Movable> movables, ArrayList<Collidable> collidables) {
 		for(Movable m : movables) {
 			m.move();
 		}
 		
-		for (int i = 0; i < collidables.length-1; i++) {
-			for (int j = i+1; j < collidables.length; j++) {
-				if(CollisionChecker.checkCollision(collidables[i], collidables[j])) {
-					collidables[i].handleCollision(collidables[j]);
-					collidables[j].handleCollision(collidables[i]);
+		for (int i = 0; i < collidables.size()-1; i++) {
+			for (int j = i+1; j < collidables.size(); j++) {
+				if(CollisionChecker.checkCollision(collidables.get(i), collidables.get(j))) {
+					collidables.get(i).handleCollision(collidables.get(j));
+					collidables.get(j).handleCollision(collidables.get(i));
 				}
 			}
 		}
@@ -59,7 +63,7 @@ public abstract class Level {
     
 	
 	
-    protected void setupGame(int width, int height, Paint background, Drawable[] drawables){
+    protected void setupGame(int width, int height, Paint background, ArrayList<Drawable> drawables, Player player){
 		root = new Group();
 		
 		for (Drawable d : drawables) {
@@ -75,6 +79,8 @@ public abstract class Level {
 		
 		myScene = new Scene(root,width,height);
 		myScene.setFill(background);
+
+		myScene.setOnKeyPressed(e -> player.handleKeyInput(e.getCode()));
 	}
 	
     public Scene getScene() {
@@ -86,11 +92,11 @@ public abstract class Level {
 	}
 	
 
-	public boolean checkWin(Enemy[] myEnemies) {
+	public boolean checkWin(Target[] myTargets) {
 		boolean allDestroyed = true;
 		
-		for (Enemy enemy : myEnemies) {
-			if (!enemy.checkIfRemoved()) {
+		for (Target target : myTargets) {
+			if (!target.checkIfRemoved()) {
 				allDestroyed = false;
 			}
 		}
