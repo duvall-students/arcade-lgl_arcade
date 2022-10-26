@@ -4,7 +4,6 @@ import java.util.Random;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import ui.CollisionChecker;
 
 /*
  * Brick Class
@@ -31,9 +30,7 @@ public class Brick extends Target {
 
 	@Override
 	public void handleCollision(Collidable collidable) {
-		if(CollisionChecker.checkCollision((Collidable) brick, collidable)) {
-			remove();
-		}
+		remove();
 		
 	}
 
