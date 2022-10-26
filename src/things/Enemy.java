@@ -3,7 +3,6 @@ package things;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import ui.CollisionChecker;
 /*
  * Enemy Class to create and move enemies
  * 
@@ -28,6 +27,7 @@ public class Enemy extends Target implements Movable {
 	}
 	
 	//Moves enemy left and right, depending on velocity
+	//Implement ticks for movement along Y axis
 	@Override
 	public void move() {
 		enemy.setX(enemy.getX()+myVelocity.getX());
@@ -45,9 +45,7 @@ public class Enemy extends Target implements Movable {
 	//Uses CollisionCheck to determine contact between two shapes
 	@Override
 	public void handleCollision(Collidable collidable) {
-		if(CollisionChecker.checkCollision((Collidable) enemy, collidable)) {
-			remove();
-		}
+		remove();
 
 	}
 
