@@ -45,7 +45,7 @@ public class BreakoutLevel extends Level {
 	
 	private void initialSetup(int width, int height) {
 		paddle = new Paddle(width / 2, (int)(height * paddleYPositionFactor));
-		myBricks = initilizeBricks(BRICK_ROWS, BRICK_COLUMNS, 0, 0);
+		myBricks = initilizeBricks(BRICK_ROWS, BRICK_COLUMNS, 1, 1, width);
 		myBall = new Ball();
 		
 		drawables = new ArrayList<Drawable>();
@@ -59,7 +59,7 @@ public class BreakoutLevel extends Level {
 		collidables.add(myBall);
 		
 		for (Brick brick : myBricks) {
-//			drawables.add(brick);
+			drawables.add(brick);
 		}
 		
 	}
@@ -69,17 +69,10 @@ public class BreakoutLevel extends Level {
 	//This is mainly just checking collisions every frame and reacting to collisions
 	public int run() {
 		
-		super.genericRun(movables, collidables);
-		
 		checkWallCollisions();
+
+		return super.genericRun(movables, collidables, myBricks);
 		
-		if (checkWin(myBricks)) {
-			return Level.WIN_CODE;
-		}else if (checkLose()) {
-			return Level.END_CODE;
-		}
-		
-		return Level.CONTINUE_CODE;
 	}
 
 
@@ -94,8 +87,8 @@ public class BreakoutLevel extends Level {
 	}
 
 
-
-	private boolean checkLose() {
+	@Override
+	protected boolean checkLose() {
 		return (myBall.getYCoordinate() > myScene.getHeight());
 	}
 
