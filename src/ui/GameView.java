@@ -25,7 +25,7 @@ import levels.Level;
 
 public class GameView extends Application {
 	
-	public static final Paint BACKGROUND = Color.BLACK;
+	public static final Paint BACKGROUND = Color.AZURE;
 	public static final int SIZE = 400;
 	public static final String TITLE = "Arcade";
 	public static final int FRAMES_PER_SECOND = 60;
@@ -57,6 +57,9 @@ public class GameView extends Application {
 	}
 	
 	public void step(double elapsedTime, Stage stage) {
+		//Sometimes levels will change scenes on their own
+		stage.setScene(levels[currentLevel].getScene());
+
 		int outputCode = levels[currentLevel].run();
 		
 		if (outputCode == Level.END_CODE) {

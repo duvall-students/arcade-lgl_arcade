@@ -43,7 +43,7 @@ public class GalagaLevel extends Level {
 	
 	private void initialSetup(int width, int height) {
 	//	ship = new Ship(width / 2, (int)(height * shipYPositionFactor));
-		myEnemies = initilizeEnemies(ENEMY_ROWS, ENEMY_COLUMNS, 5, 5);
+		myEnemies = initilizeEnemies(ENEMY_ROWS, ENEMY_COLUMNS, 5, 5, width);
 		
 		drawables = new ArrayList<Drawable>();
 		movables = new ArrayList<Movable>();
@@ -53,7 +53,7 @@ public class GalagaLevel extends Level {
 		collidables.add(ship);
 		
 		for (Enemy enemy : myEnemies) {
-//			drawables.add(enemy);
+			drawables.add(enemy);
 			movables.add(enemy);
 		}	
 	}
@@ -63,19 +63,11 @@ public class GalagaLevel extends Level {
 
 	@Override
 	public int run() {
-		super.genericRun(movables, collidables);
-
-		
-		if (checkWin(myEnemies)) {
-			return Level.WIN_CODE;
-		}else if (checkLose()) {
-			return Level.END_CODE;
-		}
-		
-		return Level.CONTINUE_CODE;
+		return super.genericRun(movables, collidables, myEnemies);
 	}
 	
-	private boolean checkLose() {
+	@Override
+	protected boolean checkLose() {
 	//	return ship.wasHit();
 		return false;
 	}
