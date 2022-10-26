@@ -9,11 +9,11 @@ import things.Collidable;
 import things.Drawable;
 import things.Movable;
 import things.Paddle;
-import ui.GameView;
 
 
 /**
  * This is the basic breakout level without power bricks
+ * Any commented out lines are there to prevent errors due to the fact the other classes aren't done
  * @author Lilly Purrington
  *
  */
@@ -38,6 +38,12 @@ public class BreakoutLevel extends Level {
 	
 	
 	public BreakoutLevel(int width, int height, Paint background) {
+		initialSetup(width,height);
+		
+		super.setupGame(width,height, background, drawables, paddle);
+	}
+	
+	private void initialSetup(int width, int height) {
 		paddle = new Paddle(width / 2, (int)(height * paddleYPositionFactor));
 		myBricks = initilizeBricks(BRICK_ROWS, BRICK_COLUMNS, 0, 0);
 		myBall = new Ball();
@@ -46,19 +52,17 @@ public class BreakoutLevel extends Level {
 		movables = new ArrayList<Movable>();
 		collidables = new ArrayList<Collidable>();
 		
-		drawables.add(paddle);
-		drawables.add(myBall);
+//		drawables.add(paddle);
+//		drawables.add(myBall);
 		movables.add(myBall);
 		collidables.add(paddle);
 		collidables.add(myBall);
 		
 		for (Brick brick : myBricks) {
-			drawables.add(brick);
+//			drawables.add(brick);
 		}
 		
-		super.setupGame(width,height, background, drawables, paddle);
 	}
-	
 	
 	
 	@Override
@@ -81,18 +85,25 @@ public class BreakoutLevel extends Level {
 
 	//Checks if the ball has hit a wall
 	private void checkWallCollisions() {
-		
+		if (myBall.getYCoordinate() < 0) {
+			myBall.changeCourse(true);
+		}
+		if (myBall.getXCoordinate() < 0 || myBall.getXCoordinate() > myScene.getWidth()) {
+			myBall.changeCourse(false);
+		}
 	}
 
 
 
 	private boolean checkLose() {
-		return (myBall.getYCoordinate() > GameView.SIZE);
+		return (myBall.getYCoordinate() > myScene.getHeight());
 	}
 
 
 
 	public void remake(int score) {
+		initialSetup((int) myScene.getWidth(), (int) myScene.getHeight());
+		
 		super.setupGame((int) myScene.getWidth(), (int) myScene.getHeight(), myScene.getFill(), drawables, paddle);
 		setScore(score);
 	}
