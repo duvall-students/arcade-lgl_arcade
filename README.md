@@ -22,15 +22,15 @@ INTERFACES:
 
 SUPER CLASSES:
 
-  - Projectile (Abstract), Implements: Collidable & Moveable
+  - Projectile (Abstract), Implements: Collidable, Drawable & Moveable
       - Subclasses: Ball, Beam
       - Public Methods: move, getHitBox, getX, getY, getSelf
     
-  - Player (Abstract) Implements: Collidable
+  - Player (Abstract) Implements: Collidable, Drawable
       - Subclasses: Paddle, Ship
       - Public Methods: getHitBox, handleKeyInput, getX, getY, getSelf
      
-  - Target (Abstract) Implements: Collidable
+  - Target (Abstract) Implements: Collidable, Drawable
       - Subclasses: Brick, Enemy Implements Moveable
       - Public Methods: getHitBox, remove, checkIfRemoved, getX, getY, getSelf
       
@@ -49,7 +49,7 @@ SUBCLASSES:
       - Methods: 
   - Ship
       - Methods: handleKeyInput (Override)
-  - Brick
+  - Brick Implements Drawable
       - Methods: 
   - Enemy Implements Moveable
       - Methods: move

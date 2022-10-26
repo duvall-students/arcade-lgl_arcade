@@ -1,18 +1,25 @@
 package levels;
 
+import java.util.ArrayList;
+
 import io.FileReader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
+import things.Brick;
 import things.Collidable;
 import things.Drawable;
+import things.Enemy;
 import things.Movable;
+import things.Player;
+import things.Target;
 import ui.CollisionChecker;
 
 
 /**
  * This is the superclass that provides functionality to the levels
+ * Any commented out lines are there to prevent errors due to the fact the other classes aren't done
  * @author Lilly Purrington
  *
  */
@@ -39,23 +46,26 @@ public abstract class Level {
 	//Re-makes the level while carrying over the score
 	public abstract void remake(int score);
 	
-	public void genericRun(Movable[] movables, Collidable[] collidables) {
+	public void genericRun(ArrayList<Movable> movables, ArrayList<Collidable> collidables) {
 		for(Movable m : movables) {
 			m.move();
 		}
 		
-		for (int i = 0; i < collidables.length-1; i++) {
-			for (int j = i+1; j < collidables.length; j++) {
-				if(CollisionChecker.checkCollision(collidables[i], collidables[j])) {
-					collidables[i].handleCollision(collidables[j]);
+		for (int i = 0; i < collidables.size()-1; i++) {
+			for (int j = i+1; j < collidables.size(); j++) {
+				if(CollisionChecker.checkCollision(collidables.get(i), collidables.get(j))) {
+					collidables.get(i).handleCollision(collidables.get(j));
+					collidables.get(j).handleCollision(collidables.get(i));
 				}
 			}
 		}
+		
+		updateScore();
 	}
     
 	
 	
-    protected void setupGame(int width, int height, Paint background, Drawable[] drawables){
+    protected void setupGame(int width, int height, Paint background, ArrayList<Drawable> drawables, Player player){
 		root = new Group();
 		
 		for (Drawable d : drawables) {
@@ -71,6 +81,8 @@ public abstract class Level {
 		
 		myScene = new Scene(root,width,height);
 		myScene.setFill(background);
+
+	//	myScene.setOnKeyPressed(e -> player.handleKeyInput(e.getCode()));
 	}
 	
     public Scene getScene() {
@@ -81,19 +93,19 @@ public abstract class Level {
 		return score;
 	}
 	
-    /* Can't add until enemy class is created (not my job)
-	public boolean checkWin(Enemy[] myEnemies) {
+
+	public boolean checkWin(Target[] myTargets) {
 		boolean allDestroyed = true;
 		
-		for (Enemy enemy : myEnemies) {
-			if (!enemy.checkIfRemoved()) {
+		for (Target target : myTargets) {
+			if (!target.checkIfRemoved()) {
 				allDestroyed = false;
 			}
 		}
 
 		return allDestroyed;
 	}
-	*/
+
 	
 	protected void setScore(int score) {
 		this.score = score;
@@ -102,21 +114,46 @@ public abstract class Level {
 	public void updateScore() {
 		currentScore.setText("Current Score: " + score);
 	}
+	
+	
+	//I know it is bad security but I need the brick class to be able to access it when bricks are destroyed
+	public void incrimentScore() {
+		score++;
+	}
 
-	/* Waiting on other people (though still needs some work from me anyway)
+	//Sets up where all the bricks are
+	//The spacer variable is how far apart the bricks should be
+	//I need to figure out how to combine this with initilizeEnemies
+	public Brick[] initilizeBricks(int brickRows, int brickColumns, int columnSpacer, int rowSpacer) {
+		int brickSize = (int) ((myScene.getWidth()/brickColumns) - columnSpacer);
+		Brick[] myBricks = new Brick[brickRows * brickColumns];
+		for(int row = 0; row < brickRows; row++) {
+			for (int col = 0; col < brickColumns; col ++) {
+				int x = col * brickSize + col * columnSpacer;
+				int y = row * brickSize + row * rowSpacer;
+				Brick brick = new Brick(x,y,brickSize,brickSize);
+				myBricks[row*brickColumns + col] = brick;				
+			}
+		}
+		return myBricks;
+	}
+	
 	//Sets up where all the enemies are
-	public Enemy[] initilizeEnemies(int enemyRows, int enemyColumns, int enemySize, int rowSpacer, int columnSpacer) {
+	//The spacer variable is how far apart the bricks should be
+	//I need to figure out how to combine this with initilizeEnemies
+	public Enemy[] initilizeEnemies(int enemyRows, int enemyColumns, int columnSpacer, int rowSpacer) {
+		int enemySize = (int) ((myScene.getWidth()/enemyColumns) - columnSpacer);
 		Enemy[] myEnemies = new Enemy[enemyRows * enemyColumns];
 		for(int row = 0; row < enemyRows; row++) {
 			for (int col = 0; col < enemyColumns; col ++) {
-				int y = row * enemySize;
-				int x = col * enemySize;
-				Enemy brick = new Enemy(x,y,enemySize,enemySize);
-				myEnemies[row*enemyColumns + col] = brick;
+				int x = col * enemySize + col * columnSpacer;
+				int y = row * enemySize + row * rowSpacer;
+				Enemy enemy = new Enemy(x,y,enemySize,enemySize);
+				myEnemies[row*enemyColumns + col] = enemy;				
 			}
 		}
 		return myEnemies;
 	}
-	*/
+	
 	
 }
