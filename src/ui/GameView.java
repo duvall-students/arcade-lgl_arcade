@@ -9,8 +9,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import levels.BreakoutLevel;
-import levels.GalagaLevel;
+import levels.BreakoutLevel1;
+import levels.GalagaLevel1;
 import levels.Level;
 
 /**
@@ -33,7 +33,7 @@ public class GameView extends Application {
     public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
     
     private FileRecord fileRecord = new FileRecord();
-    private Level[] levels = {new GalagaLevel(SIZE,SIZE,BACKGROUND), new BreakoutLevel(SIZE,SIZE,BACKGROUND)};
+    private Level[] levels = {new GalagaLevel1(SIZE,SIZE,BACKGROUND), new BreakoutLevel1(SIZE,SIZE,BACKGROUND)};
     private int currentLevel = 0;
     private int score;
     

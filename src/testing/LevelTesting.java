@@ -8,7 +8,9 @@ import org.junit.Test;
 
 import javafx.scene.paint.Color;
 import levels.BreakoutLevel;
+import levels.BreakoutLevel1;
 import levels.GalagaLevel;
+import levels.GalagaLevel1;
 import levels.Level;
 import things.Brick;
 import things.Collidable;
@@ -25,13 +27,13 @@ public class LevelTesting {
 	
 	@Test
 	public void basicBuildTest() {
-		new BreakoutLevel(300,300,Color.AZURE);
-		new GalagaLevel(300,300,Color.AZURE);
+		new BreakoutLevel1(300,300,Color.AZURE);
+		new GalagaLevel1(300,300,Color.AZURE);
 	}
 	
 	@Test
 	public void testBreakoutWinCondition() {
-		BreakoutLevel breakoutLevel = new BreakoutLevel(300,300,Color.AZURE);
+		BreakoutLevel breakoutLevel = new BreakoutLevel1(300,300,Color.AZURE);
 		
 		Brick[] bricks = breakoutLevel.initilizeBricks(20,4,0,0,300);
 		for (Brick brick : bricks) {
@@ -42,8 +44,8 @@ public class LevelTesting {
 	
 	@Test
 	public void testRemakeLevel() {
-		BreakoutLevel breakoutLevel = new BreakoutLevel(300,300,Color.AZURE);
-		GalagaLevel galagaLevel = new GalagaLevel(300,300,Color.AZURE);
+		BreakoutLevel breakoutLevel = new BreakoutLevel1(300,300,Color.AZURE);
+		GalagaLevel galagaLevel = new GalagaLevel1(300,300,Color.AZURE);
 		
 		breakoutLevel.incrimentScore();
 		galagaLevel.incrimentScore();
@@ -57,7 +59,7 @@ public class LevelTesting {
 	
 	@Test
 	public void testGenericRunContinue() {
-		BreakoutLevel breakoutLevel = new BreakoutLevel(300,300,Color.AZURE);
+		BreakoutLevel breakoutLevel = new BreakoutLevel1(300,300,Color.AZURE);
 		
 		Brick[] bricks = breakoutLevel.initilizeBricks(20,4,0,0,300);
 		assertTrue(breakoutLevel.genericRun(new ArrayList<Movable>(), new ArrayList<Collidable>(), bricks) == Level.CONTINUE_CODE);
@@ -66,7 +68,7 @@ public class LevelTesting {
 	
 	@Test
 	public void testGenericRunWin() {
-		BreakoutLevel breakoutLevel = new BreakoutLevel(300,300,Color.AZURE);
+		BreakoutLevel breakoutLevel = new BreakoutLevel1(300,300,Color.AZURE);
 		
 		Brick[] bricks = breakoutLevel.initilizeBricks(20,4,0,0,300);
 		for (Brick brick : bricks) {

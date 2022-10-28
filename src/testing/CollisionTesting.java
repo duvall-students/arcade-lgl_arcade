@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import javafx.scene.paint.Color;
-import levels.BreakoutLevel;
+import levels.BreakoutLevel1;
 import things.Brick;
 import ui.CollisionChecker;
 
@@ -27,7 +27,7 @@ public class CollisionTesting {
 	
 	@Test 
 	public void targetInitilizationTest() {
-		Brick[] bricks = new BreakoutLevel(300, 300, Color.AZURE).initilizeBricks(20, 4, 1, 1,300);
+		Brick[] bricks = new BreakoutLevel1(300, 300, Color.AZURE).initilizeBricks(20, 4, 1, 1,300);
 		
 		for (int i = 0; i < bricks.length-1; i++) {
 			for (int j = i+1; j < bricks.length; j++) {
