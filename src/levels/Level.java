@@ -47,6 +47,9 @@ public abstract class Level {
 	public abstract void remake(int score);
 	
     protected abstract boolean checkLose();
+    
+	protected abstract void initialSetup(int width, int height, ArrayList<Drawable> drawables,ArrayList<Movable> movables, ArrayList<Collidable> collidables);
+
 
 	
 	public int genericRun(ArrayList<Movable> movables, ArrayList<Collidable> collidables, Target[] targets) {
