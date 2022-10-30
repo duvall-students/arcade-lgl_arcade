@@ -12,9 +12,9 @@ import things.Movable;
 import things.Ship;
 
 /**
- * This is the basic Galaga Level
+ * These are the things needed for Galaga levels
+ * Some code commented out b/c relevant classes are not complete
  * @author Lilly Purrington
- *
  */
 
 public abstract class GalagaLevel extends Level {
@@ -41,6 +41,7 @@ public abstract class GalagaLevel extends Level {
 
 
 	protected abstract Ship getShip();
+	
 	protected abstract Enemy[] getEnemies();
 	
 
@@ -65,6 +66,7 @@ public abstract class GalagaLevel extends Level {
 		setScore(score);
 	}
 
+	//The beam code is basically adding a beam to the all relevant groups then redrawing the level to include the beam
 	private void handleKeyInput(KeyCode code) {
 		if (code.equals(KeyCode.UP)) {
 		//	Beam fired = new Beam(ship.getXcoordinate(),ship.getYcoordinate());

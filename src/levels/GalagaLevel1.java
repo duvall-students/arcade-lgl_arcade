@@ -1,13 +1,18 @@
 package levels;
 
 import java.util.ArrayList;
-
 import javafx.scene.paint.Paint;
 import things.Collidable;
 import things.Drawable;
 import things.Enemy;
 import things.Movable;
 import things.Ship;
+
+/**
+ * The basic galaga Level
+ * Some code commented out b/c relevant classes are not complete
+ * @author Lilly Purrington
+ */
 
 public class GalagaLevel1 extends GalagaLevel{
 	
@@ -26,9 +31,6 @@ public class GalagaLevel1 extends GalagaLevel{
 			ArrayList<Collidable> collidables) {
 	//	ship = new Ship(width / 2, (int)(height * shipYPositionFactor));
 		myEnemies = initilizeEnemies(ENEMY_ROWS, ENEMY_COLUMNS, 5, 5, width);
-		
-		
-		
 		
 //		drawables.add(ship);
 		collidables.add(ship);

@@ -1,7 +1,6 @@
 package levels;
 
 import java.util.ArrayList;
-
 import javafx.scene.paint.Paint;
 import things.Ball;
 import things.Brick;
@@ -9,6 +8,12 @@ import things.Collidable;
 import things.Paddle;
 import things.Drawable;
 import things.Movable;
+
+/**
+ * This is the basic Breakout level
+ * Some stuff is commented out b/c relevant classes are incomplete
+ * @author Lilly Purrington
+ */
 
 public class BreakoutLevel1 extends BreakoutLevel{
 
