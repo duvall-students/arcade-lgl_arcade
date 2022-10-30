@@ -10,13 +10,11 @@ import things.Drawable;
 import things.Movable;
 import things.Paddle;
 
-
 /**
- * This is the basic breakout level without power bricks
- * Any commented out lines are there to prevent errors due to the fact the other classes aren't done
+ * These are the basics for a breakout level
  * @author Lilly Purrington
- *
  */
+
 public abstract class BreakoutLevel extends Level {
 	
 

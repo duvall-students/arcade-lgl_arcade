@@ -1,19 +1,17 @@
 package testing;
 
 import static org.junit.Assert.*;
+import org.junit.Test;
+import javafx.scene.paint.Color;
+import levels.BreakoutLevel1;
+import things.Brick;
+import ui.CollisionChecker;
 
 /**
  * This is testing the collision logic
  * Will add more when more classes are finished
  * @author Lilly Purrington
  */
-
-import org.junit.Test;
-
-import javafx.scene.paint.Color;
-import levels.BreakoutLevel1;
-import things.Brick;
-import ui.CollisionChecker;
 
 public class CollisionTesting {
 

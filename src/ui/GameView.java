@@ -15,7 +15,7 @@ import levels.Level;
 
 /**
  * This handles running the levels and choosing between them
- * All of this code is from the breakout project
+ * All of this code is from the breakout project (except for line 61)
  * I tried to make main it's own class but it threw errors at me
  * @author Lilly Purrington
  *
