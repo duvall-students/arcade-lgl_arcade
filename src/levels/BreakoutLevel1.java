@@ -11,7 +11,6 @@ import things.Movable;
 
 /**
  * This is the basic Breakout level
- * Some stuff is commented out b/c relevant classes are incomplete
  * @author Lilly Purrington
  */
 
@@ -38,8 +37,8 @@ public class BreakoutLevel1 extends BreakoutLevel{
 		myBall = new Ball();
 	
 		
-//		drawables.add(paddle);
-//		drawables.add(myBall);
+		drawables.add(paddle);
+		drawables.add(myBall);
 		movables.add(myBall);
 		collidables.add(paddle);
 		collidables.add(myBall);
