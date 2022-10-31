@@ -3,19 +3,22 @@ package things;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import ui.GameView;
 /*
  * Enemy Class to create and move enemies
  * 
  * @author Luke Freudenthal
  * 
  */
-public class Enemy extends Target implements Movable {
+public class Enemy extends Target implements Movable, Drawable {
 
 	Rectangle enemy;
+	
 	
 	private double xVelocity = 1;
 	private double yVelocity = 0;
 	private Point2D myVelocity;
+	private int ticker;
 	
 	public static final int REMOVAL_LOCATION = -5000;
 	
@@ -30,8 +33,11 @@ public class Enemy extends Target implements Movable {
 	//Implement ticks for movement along Y axis
 	@Override
 	public void move() {
+		ticker++;
 		enemy.setX(enemy.getX()+myVelocity.getX());
-		
+		if(ticker % 300 == 0) {
+			enemy.setY(enemy.getY() - 25);
+		}
 	}
 	
 	//Included to possibly handle bouncing on the walls
@@ -74,7 +80,7 @@ public class Enemy extends Target implements Movable {
 	
 	@Override
 	public Rectangle getHitBox() {
-		return enemy;
+		return new Rectangle(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
 	}
 	
 	// SETTERS
