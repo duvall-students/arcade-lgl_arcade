@@ -4,6 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import ui.GameView;
 
 /*
@@ -45,6 +46,7 @@ public class Ball extends Projectile {
 		return ball.getCenterX();
 	}
 
+	@Override
 	public double getYCoordinate() {
 		return ball.getCenterY();
 	}
@@ -65,14 +67,12 @@ public class Ball extends Projectile {
 		}
 	}
 
-
 	// Main move method
 	@Override
 	public void move() {
 		ball.setCenterX(ball.getCenterX()+myVelocity.getX());
 		ball.setCenterY(ball.getCenterY()+myVelocity.getY());
 	}
-
 
 	// changeCourse helper method
 	private double positiveOrNegative() {
@@ -83,4 +83,5 @@ public class Ball extends Projectile {
 			return -2;
 		}
 	}
+
 }
