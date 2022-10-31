@@ -45,7 +45,7 @@ public class Beam extends Projectile {
 
 
 	@Override
-	public double getSelf() {
-		return 0;
+	public Rectangle getSelf() {
+		return BEAM;
 	}
 }
