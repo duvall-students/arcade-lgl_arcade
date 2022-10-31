@@ -74,5 +74,4 @@ public class GameView extends Application {
 		stage.setScene(levels[currentLevel].getScene());
         stage.show();
 	}
-	
 }
