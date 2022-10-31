@@ -46,7 +46,13 @@ public abstract class Level {
 	//Re-makes the level while carrying over the score
 	public abstract void remake(int score);
 	
-	public void genericRun(ArrayList<Movable> movables, ArrayList<Collidable> collidables) {
+    protected abstract boolean checkLose();
+    
+	protected abstract void initialSetup(int width, int height, ArrayList<Drawable> drawables,ArrayList<Movable> movables, ArrayList<Collidable> collidables);
+
+
+	
+	public int genericRun(ArrayList<Movable> movables, ArrayList<Collidable> collidables, Target[] targets) {
 		for(Movable m : movables) {
 			m.move();
 		}
@@ -61,11 +67,20 @@ public abstract class Level {
 		}
 		
 		updateScore();
+		
+		if (checkWin(targets)) {
+			return Level.WIN_CODE;
+		}else if (checkLose()) {
+			return Level.END_CODE;
+		}
+		
+		return Level.CONTINUE_CODE;
 	}
     
 	
 	
-    protected void setupGame(int width, int height, Paint background, ArrayList<Drawable> drawables, Player player){
+
+	protected void setupGame(int width, int height, Paint background, ArrayList<Drawable> drawables, Player player){
 		root = new Group();
 		
 		for (Drawable d : drawables) {
@@ -124,8 +139,8 @@ public abstract class Level {
 	//Sets up where all the bricks are
 	//The spacer variable is how far apart the bricks should be
 	//I need to figure out how to combine this with initilizeEnemies
-	public Brick[] initilizeBricks(int brickRows, int brickColumns, int columnSpacer, int rowSpacer) {
-		int brickSize = (int) ((myScene.getWidth()/brickColumns) - columnSpacer);
+	public Brick[] initilizeBricks(int brickRows, int brickColumns, int columnSpacer, int rowSpacer, int screenWidth) {
+		int brickSize = (int) ((screenWidth/brickColumns) - columnSpacer);
 		Brick[] myBricks = new Brick[brickRows * brickColumns];
 		for(int row = 0; row < brickRows; row++) {
 			for (int col = 0; col < brickColumns; col ++) {
@@ -141,8 +156,8 @@ public abstract class Level {
 	//Sets up where all the enemies are
 	//The spacer variable is how far apart the bricks should be
 	//I need to figure out how to combine this with initilizeEnemies
-	public Enemy[] initilizeEnemies(int enemyRows, int enemyColumns, int columnSpacer, int rowSpacer) {
-		int enemySize = (int) ((myScene.getWidth()/enemyColumns) - columnSpacer);
+	public Enemy[] initilizeEnemies(int enemyRows, int enemyColumns, int columnSpacer, int rowSpacer, int screenWidth) {
+		int enemySize = (int) ((screenWidth/enemyColumns) - columnSpacer);
 		Enemy[] myEnemies = new Enemy[enemyRows * enemyColumns];
 		for(int row = 0; row < enemyRows; row++) {
 			for (int col = 0; col < enemyColumns; col ++) {
