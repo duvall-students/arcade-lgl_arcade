@@ -1,5 +1,7 @@
 package levels;
 
+import java.util.ArrayList;
+
 import io.FileReader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -10,12 +12,14 @@ import things.Collidable;
 import things.Drawable;
 import things.Enemy;
 import things.Movable;
+import things.Player;
+import things.Target;
 import ui.CollisionChecker;
-import ui.GameView;
 
 
 /**
  * This is the superclass that provides functionality to the levels
+ * Any commented out lines are there to prevent errors due to the fact the other classes aren't done
  * @author Lilly Purrington
  *
  */
@@ -42,23 +46,41 @@ public abstract class Level {
 	//Re-makes the level while carrying over the score
 	public abstract void remake(int score);
 	
-	public void genericRun(Movable[] movables, Collidable[] collidables) {
+    protected abstract boolean checkLose();
+    
+	protected abstract void initialSetup(int width, int height, ArrayList<Drawable> drawables,ArrayList<Movable> movables, ArrayList<Collidable> collidables);
+
+
+	
+	public int genericRun(ArrayList<Movable> movables, ArrayList<Collidable> collidables, Target[] targets) {
 		for(Movable m : movables) {
 			m.move();
 		}
 		
-		for (int i = 0; i < collidables.length-1; i++) {
-			for (int j = i+1; j < collidables.length; j++) {
-				if(CollisionChecker.checkCollision(collidables[i], collidables[j])) {
-					collidables[i].handleCollision(collidables[j]);
+		for (int i = 0; i < collidables.size()-1; i++) {
+			for (int j = i+1; j < collidables.size(); j++) {
+				if(CollisionChecker.checkCollision(collidables.get(i), collidables.get(j))) {
+					collidables.get(i).handleCollision(collidables.get(j));
+					collidables.get(j).handleCollision(collidables.get(i));
 				}
 			}
 		}
+		
+		updateScore();
+		
+		if (checkWin(targets)) {
+			return Level.WIN_CODE;
+		}else if (checkLose()) {
+			return Level.END_CODE;
+		}
+		
+		return Level.CONTINUE_CODE;
 	}
     
 	
 	
-    protected void setupGame(int width, int height, Paint background, Drawable[] drawables){
+
+	protected void setupGame(int width, int height, Paint background, ArrayList<Drawable> drawables, Player player){
 		root = new Group();
 		
 		for (Drawable d : drawables) {
@@ -74,6 +96,8 @@ public abstract class Level {
 		
 		myScene = new Scene(root,width,height);
 		myScene.setFill(background);
+
+	//	myScene.setOnKeyPressed(e -> player.handleKeyInput(e.getCode()));
 	}
 	
     public Scene getScene() {
@@ -85,11 +109,11 @@ public abstract class Level {
 	}
 	
 
-	public boolean checkWin(Enemy[] myEnemies) {
+	public boolean checkWin(Target[] myTargets) {
 		boolean allDestroyed = true;
 		
-		for (Enemy enemy : myEnemies) {
-			if (!enemy.checkIfRemoved()) {
+		for (Target target : myTargets) {
+			if (!target.checkIfRemoved()) {
 				allDestroyed = false;
 			}
 		}
@@ -105,12 +129,18 @@ public abstract class Level {
 	public void updateScore() {
 		currentScore.setText("Current Score: " + score);
 	}
+	
+	
+	//I know it is bad security but I need the brick class to be able to access it when bricks are destroyed
+	public void incrimentScore() {
+		score++;
+	}
 
 	//Sets up where all the bricks are
 	//The spacer variable is how far apart the bricks should be
 	//I need to figure out how to combine this with initilizeEnemies
-	public Brick[] initilizeBricks(int brickRows, int brickColumns, int columnSpacer, int rowSpacer) {
-		int brickSize = (GameView.SIZE/brickColumns) - columnSpacer;
+	public Brick[] initilizeBricks(int brickRows, int brickColumns, int columnSpacer, int rowSpacer, int screenWidth) {
+		int brickSize = (int) ((screenWidth/brickColumns) - columnSpacer);
 		Brick[] myBricks = new Brick[brickRows * brickColumns];
 		for(int row = 0; row < brickRows; row++) {
 			for (int col = 0; col < brickColumns; col ++) {
@@ -126,8 +156,8 @@ public abstract class Level {
 	//Sets up where all the enemies are
 	//The spacer variable is how far apart the bricks should be
 	//I need to figure out how to combine this with initilizeEnemies
-	public Enemy[] initilizeEnemies(int enemyRows, int enemyColumns, int columnSpacer, int rowSpacer) {
-		int enemySize = (GameView.SIZE/enemyColumns) - columnSpacer;
+	public Enemy[] initilizeEnemies(int enemyRows, int enemyColumns, int columnSpacer, int rowSpacer, int screenWidth) {
+		int enemySize = (int) ((screenWidth/enemyColumns) - columnSpacer);
 		Enemy[] myEnemies = new Enemy[enemyRows * enemyColumns];
 		for(int row = 0; row < enemyRows; row++) {
 			for (int col = 0; col < enemyColumns; col ++) {

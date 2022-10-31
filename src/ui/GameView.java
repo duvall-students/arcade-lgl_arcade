@@ -9,13 +9,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import levels.BreakoutLevel;
-import levels.GalagaLevel;
+import levels.BreakoutLevel1;
+import levels.GalagaLevel1;
 import levels.Level;
 
 /**
  * This handles running the levels and choosing between them
- * All of this code is from the breakout project
+ * All of this code is from the breakout project (except for line 61)
  * I tried to make main it's own class but it threw errors at me
  * @author Lilly Purrington
  *
@@ -25,7 +25,7 @@ import levels.Level;
 
 public class GameView extends Application {
 	
-	public static final Paint BACKGROUND = Color.BLACK;
+	public static final Paint BACKGROUND = Color.AZURE;
 	public static final int SIZE = 400;
 	public static final String TITLE = "Arcade";
 	public static final int FRAMES_PER_SECOND = 60;
@@ -33,7 +33,7 @@ public class GameView extends Application {
     public static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
     
     private FileRecord fileRecord = new FileRecord();
-    private Level[] levels = {new GalagaLevel(SIZE,SIZE,BACKGROUND), new BreakoutLevel(SIZE,SIZE,BACKGROUND)};
+    private Level[] levels = {new GalagaLevel1(SIZE,SIZE,BACKGROUND), new BreakoutLevel1(SIZE,SIZE,BACKGROUND)};
     private int currentLevel = 0;
     private int score;
     
@@ -57,6 +57,9 @@ public class GameView extends Application {
 	}
 	
 	public void step(double elapsedTime, Stage stage) {
+		//Sometimes levels will change scenes on their own
+		stage.setScene(levels[currentLevel].getScene());
+
 		int outputCode = levels[currentLevel].run();
 		
 		if (outputCode == Level.END_CODE) {
@@ -74,5 +77,4 @@ public class GameView extends Application {
 		stage.setScene(levels[currentLevel].getScene());
         stage.show();
 	}
-	
 }

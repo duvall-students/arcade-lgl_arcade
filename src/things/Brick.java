@@ -30,7 +30,7 @@ public class Brick extends Target {
 
 	@Override
 	public void handleCollision(Collidable collidable) {
-		// TODO Auto-generated method stub
+		remove();
 		
 	}
 
