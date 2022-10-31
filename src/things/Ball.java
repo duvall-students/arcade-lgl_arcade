@@ -1,4 +1,5 @@
 package things;
+
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -22,70 +23,64 @@ public class Ball extends Projectile {
 	private boolean firstBounce = true;
 	private double xVelocity = 0;
 	private double yVelocity = 2;
-    private Point2D myVelocity;
-    Circle ball;
-	
+	private Point2D myVelocity;
+	Circle ball;
+
 	public Ball() {
 		ball = new Circle();
-	    ball.setRadius(BALL_RADIUS);
-	    ball.setCenterX(GameView.SIZE/2);
-	    ball.setCenterY(GameView.SIZE/2);
-	    ball.setFill(BALL_COLOR);
-	    myVelocity = new Point2D(xVelocity, yVelocity);
+		ball.setRadius(BALL_RADIUS);
+		ball.setCenterX(GameView.SIZE/2);
+		ball.setCenterY(GameView.SIZE/2);
+		ball.setFill(BALL_COLOR);
+		myVelocity = new Point2D(xVelocity, yVelocity);
 	}
-	
-	
+
 	public Circle getCircle() {
 		return ball;
 	}
-	
-	
-	/*
-	 * Getters for X and Y Coordinates 
-	 */
+
+	// Getters for X and Y Coordinates 
 	@Override
 	public double getXCoordinate() {
 		return ball.getCenterX();
 	}
+
 	public double getYCoordinate() {
 		return ball.getCenterY();
 	}
-	
-	
-	/*
-	 * Change the direction of the ball after a bounce
-	 * is determined to be horizontal or vertical
-	 */
+
+	// Change the direction of the ball after a bounce is determined to be horizontal or vertical
 	public void changeCourse(boolean isHorizontalBounce) {
 		if(isHorizontalBounce) {
 			myVelocity = new Point2D(-myVelocity.getX(), myVelocity.getY());
-		} else {
+		} 
+		else {
 			myVelocity = new Point2D(myVelocity.getX(), -myVelocity.getY());
-			/*
-			 *  After the first bounce of the ball,
-			 *  add a positive or negative velocity to the X direction
-			 */
+
+			// After the first bounce of the ball, add a positive or negative velocity to the X direction
 			if(firstBounce) {
 				myVelocity = new Point2D(myVelocity.getX() + positiveOrNegative(), myVelocity.getY());
 				firstBounce = false;
 			}
 		}
 	}
-	
-	
-	// Main move method
-    public void move () {
-        ball.setCenterX(ball.getCenterX()+myVelocity.getX());
-        ball.setCenterY(ball.getCenterY()+myVelocity.getY());
-    }
-    
 
-    // changeCourse helper method
-    private double positiveOrNegative() {
-    	if(Math.random() > 0.5) {
-    		return 2;
-    	} else {
-    		return -2;
-    	}
-    }
+
+	// Main move method
+	@Override
+	public void move() {
+		ball.setCenterX(ball.getCenterX()+myVelocity.getX());
+		ball.setCenterY(ball.getCenterY()+myVelocity.getY());
+	}
+
+
+	// changeCourse helper method
+	private double positiveOrNegative() {
+		if(Math.random() > 0.5) {
+			return 2;
+		} 
+		else {
+			return -2;
+		}
+	}
 }
