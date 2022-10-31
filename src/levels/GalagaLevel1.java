@@ -32,7 +32,7 @@ public class GalagaLevel1 extends GalagaLevel{
 	//	ship = new Ship(width / 2, (int)(height * shipYPositionFactor));
 		myEnemies = initilizeEnemies(ENEMY_ROWS, ENEMY_COLUMNS, 5, 5, width);
 		
-//		drawables.add(ship);
+		drawables.add(ship);
 		collidables.add(ship);
 		
 		for (Enemy enemy : myEnemies) {
@@ -43,8 +43,7 @@ public class GalagaLevel1 extends GalagaLevel{
 
 	@Override
 	protected Ship getShip() {
-		//return ship (ship class is not made)
-		return null;
+		return ship;
 	}
 
 	@Override
