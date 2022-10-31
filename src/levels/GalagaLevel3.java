@@ -1,5 +1,14 @@
 package levels;
 
+import java.util.ArrayList;
+
+import javafx.scene.paint.Paint;
+import things.Collidable;
+import things.Drawable;
+import things.Enemy;
+import things.Movable;
+import things.Ship;
+
 /*
  * Third level of Galaga
  * Arcade Game
@@ -7,22 +16,46 @@ package levels;
  * 
  */
 
-public class GalagaLevel3 extends Level {
+public class GalagaLevel3 extends GalagaLevel {
 
-	public GalagaLevel3() {
-		// TODO Auto-generated constructor stub
+	private Ship ship;
+	private Enemy[] myEnemies;
+	
+	
+	private double shipYPositionFactor = .75;
+	
+	public GalagaLevel3(int width, int height, Paint background) {
+		super(width, height, background);
 	}
 
 	@Override
-	public int run() {
-		// TODO Auto-generated method stub
-		return 0;
+	protected Ship getShip() {
+		//return ship (ship class is not made)
+		return null;
 	}
 
 	@Override
-	public void remake(int score) {
-		// TODO Auto-generated method stub
-
+	protected Enemy[] getEnemies() {
+		return myEnemies;
 	}
+
+	@Override
+	protected void initialSetup(int width, int height, ArrayList<Drawable> drawables, ArrayList<Movable> movables,
+		ArrayList<Collidable> collidables) {
+		//	ship = new Ship(width / 2, (int)(height * shipYPositionFactor));
+		myEnemies = initilizeEnemies(ENEMY_ROWS, ENEMY_COLUMNS, 5, 5, width);
+	
+		//	drawables.add(ship);
+		collidables.add(ship);
+		
+		for (Enemy enemy : myEnemies) {
+			drawables.add(enemy);
+			movables.add(enemy);
+		}
+	}
+	
+	// Power up method TBD
+
+
 
 }
