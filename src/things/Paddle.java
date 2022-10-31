@@ -27,16 +27,17 @@ public class Paddle extends Player {
 		return PADDLE;
 	}
 	
+	@Override
 	protected double getXCoordinate() {
 		return PADDLE.getX();
 	}
 	
+	@Override
 	protected double getYCoordinate() {
 		return PADDLE.getY();
 	}
 	
 	public void handleKeyInput (KeyCode code) {
-
 		if (code == KeyCode.LEFT) {
 			PADDLE.setX(PADDLE.getX() - PADDLE_SPEED);
 		}
@@ -44,6 +45,7 @@ public class Paddle extends Player {
 			PADDLE.setX(PADDLE.getX() + PADDLE_SPEED);
 		}
 	}
+
 
 }
 
