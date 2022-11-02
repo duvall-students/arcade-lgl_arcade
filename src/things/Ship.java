@@ -9,8 +9,8 @@ public class Ship extends Player {
 
 	private final Paint SHIP_COLOR = Color.BLACK;
 
-	public static final int SHIP_WIDTH = 50;
-	public static final int SHIP_HEIGHT = 10;
+	public static final int SHIP_WIDTH = 20;
+	public static final int SHIP_HEIGHT = 30;
 	public static final int SHIP_SPEED = 20;
 	private final Rectangle SHIP;
 	
