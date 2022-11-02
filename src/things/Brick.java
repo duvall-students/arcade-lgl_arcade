@@ -20,7 +20,6 @@ public class Brick extends Target {
 	
 	
 	public Brick(int positionX, int positionY, int width, int height) {
-		
 		brick = new Rectangle(width, height, brickColor);
 	    brick.setFill(brickColor);
 	    brick.setX(positionX);

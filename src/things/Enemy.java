@@ -34,15 +34,12 @@ public class Enemy extends Target implements Movable, Drawable {
 	public void move() {
 		ticker++;
 		enemy.setX(enemy.getX()+myVelocity.getX());
+		// Moves enemy down every 300 ticks
 		if(ticker % 300 == 0) {
 			enemy.setY(enemy.getY() + 25);
 		}
-	}
-	
-	//Included to possibly handle bouncing on the walls
-	//Still need to determine movement on the Y-axis
-	public void changeCourse(boolean isHorizontalBounce) {
-		if(isHorizontalBounce) {
+		// Contains enemy within screen bounds
+		if(enemy.getX() > GameView.SIZE || enemy.getX() < 0) {
 			myVelocity = new Point2D(-myVelocity.getX(), myVelocity.getY());
 		}
 	}
