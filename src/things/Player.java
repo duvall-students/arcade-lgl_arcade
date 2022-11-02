@@ -1,6 +1,7 @@
 package things;
 
 import javafx.geometry.Point2D;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -18,4 +19,5 @@ public abstract class Player implements Collidable, Drawable  {
 
 	public abstract void remove();
 
+	public abstract void handleKeyInput(KeyCode code);
 }
