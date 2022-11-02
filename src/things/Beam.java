@@ -13,6 +13,8 @@ public class Beam extends Projectile {
 	public static final int BEAM_SPEED = 100;
 	private final Rectangle BEAM;
 	
+	public static final int REMOVAL_LOCATION = -5000;
+	
 	
 	public Beam(int x, int y) {
 		BEAM = new Rectangle(x,y,BEAM_WIDTH,BEAM_HEIGHT);
@@ -48,6 +50,6 @@ public class Beam extends Projectile {
 
 	@Override
 	public void remove() {
-		PADDLE.setX(REMOVAL_LOCATION);
+		BEAM.setX(REMOVAL_LOCATION);
 	}
 }
