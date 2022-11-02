@@ -21,7 +21,7 @@ public class GalagaLevel2 extends GalagaLevel {
 
 	private Ship ship;
 	private Enemy[] myEnemies;
-	private GalagaPowerUp powerUp;
+//	private GalagaPowerUp powerUp;
 	
 	
 	private double shipYPositionFactor = .75;
@@ -43,16 +43,16 @@ public class GalagaLevel2 extends GalagaLevel {
 	@Override
 	protected void initialSetup(int width, int height, ArrayList<Drawable> drawables, ArrayList<Movable> movables,
 		ArrayList<Collidable> collidables) {
-		//	ship = new Ship(width / 2, (int)(height * shipYPositionFactor));
+		ship = new Ship(width / 2, (int)(height * shipYPositionFactor));
 		myEnemies = initilizeEnemies(ENEMY_ROWS, ENEMY_COLUMNS, 5, 5, width);
 	
-		//	drawables.add(ship);
+		drawables.add(ship);
 		collidables.add(ship);
 		
-		powerUp = new GalagaPowerUp(width / 2, height / 2);
-		
-		drawables.add(powerUp);
-		collidables.add(powerUp);
+//		powerUp = new GalagaPowerUp(width / 2, height / 2);
+//		
+//		drawables.add(powerUp);
+//		collidables.add(powerUp);
 		
 		for (Enemy enemy : myEnemies) {
 			drawables.add(enemy);
