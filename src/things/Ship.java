@@ -1,5 +1,6 @@
 package things;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -22,6 +23,16 @@ public class Ship extends Player {
 	
 	public boolean wasHit() {
 		return false;
+	}
+	
+	@Override
+	public void handleKeyInput (KeyCode code) {
+		if (code == KeyCode.LEFT) {
+			SHIP.setX(SHIP.getX() - SHIP_SPEED);
+		}
+		else if (code == KeyCode.RIGHT) {
+			SHIP.setX(SHIP.getX() + SHIP_SPEED);
+		}
 	}
 	
 	@Override
