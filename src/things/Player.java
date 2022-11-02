@@ -6,11 +6,12 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import ui.GameView;
 
-public abstract class Player implements Collidable  {
+public abstract class Player implements Collidable, Drawable  {
 
-public abstract double getXcoordinate();
+public abstract double getXCoordinate();
 	
-public abstract double getYcoordinate();
+public abstract double getYCoordinate();
+
 	
 	
 	
