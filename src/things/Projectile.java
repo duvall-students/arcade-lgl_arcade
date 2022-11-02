@@ -19,4 +19,6 @@ public abstract class Projectile implements Collidable, Drawable, Movable  {
 	public abstract double getYCoordinate();
 	
 	public abstract Shape getSelf();
+	
+	public abstract void remove();
 }

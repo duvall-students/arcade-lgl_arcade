@@ -26,6 +26,8 @@ public class Ball extends Projectile {
 	private double yVelocity = 2;
 	private Point2D myVelocity;
 	Circle BALL;
+	
+	public static final int REMOVAL_LOCATION = -5000;
 
 	public Ball() {
 		BALL = new Circle();
@@ -85,10 +87,6 @@ public class Ball extends Projectile {
 	}
 
 	@Override
-	public void handleCollision(Collidable collidable) {	
-	}
-
-	@Override
 	public Circle getHitBox() {
 		return new Circle(BALL_RADIUS);
 	}
@@ -96,6 +94,16 @@ public class Ball extends Projectile {
 	@Override
 	public Circle getSelf() {
 		return BALL;
+	}
+
+	@Override
+	public void handleCollision(Collidable collidable) {
+		remove();
+	}
+	
+	@Override
+	public void remove() {
+		BALL.setCenterX(REMOVAL_LOCATION);
 	}
 
 }
