@@ -41,11 +41,6 @@ public class Ship extends Player {
 	}
 
 	@Override
-	public void handleCollision(Collidable collidable) {
-		remove();
-	}
-
-	@Override
 	public double getXCoordinate() {
 		return SHIP.getX();
 	}
@@ -58,6 +53,11 @@ public class Ship extends Player {
 	@Override
 	public Rectangle getSelf() {
 		return SHIP;
+	}
+	
+	@Override
+	public void handleCollision(Collidable collidable) {
+		remove();
 	}
 	
 	@Override
