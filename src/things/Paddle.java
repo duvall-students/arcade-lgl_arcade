@@ -15,7 +15,6 @@ public class Paddle extends Player {
 	public static final int PADDLE_SPEED = 20;
 	private final Rectangle PADDLE;
 	
-	
 	public Paddle(int x, int y) {
 		PADDLE = new Rectangle(x,y,PADDLE_WIDTH,PADDLE_HEIGHT);
 	}
@@ -58,7 +57,7 @@ public class Paddle extends Player {
 	}
 
 	@Override
-	public Shape getSelf() {
+	public Rectangle getSelf() {
 		return null;
 	}
 
