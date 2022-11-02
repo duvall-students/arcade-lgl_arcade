@@ -14,10 +14,11 @@ public class Ship extends Player {
 	public static final int SHIP_SPEED = 20;
 	private final Rectangle SHIP;
 	
+	public static final int REMOVAL_LOCATION = -5000;
+	
 	public Ship(int x, int y) {
 		SHIP = new Rectangle(x,y,SHIP_WIDTH,SHIP_HEIGHT);
 	}
-	
 	
 	public boolean wasHit() {
 		return false;
@@ -25,26 +26,32 @@ public class Ship extends Player {
 	
 	@Override
 	public Rectangle getHitBox() {
-		return null;
+		return new Rectangle(SHIP.getX(), SHIP.getY(), SHIP.getWidth(), SHIP.getHeight());
 	}
 
 	@Override
 	public void handleCollision(Collidable collidable) {
+		remove();
 	}
 
 	@Override
 	public double getXCoordinate() {
-		return 0;
+		return SHIP.getX();
 	}
 
 	@Override
 	public double getYCoordinate() {
-		return 0;
+		return SHIP.getY();
 	}
 
 	@Override
 	public Rectangle getSelf() {
-		return null;
+		return SHIP;
+	}
+	
+	@Override
+	public void remove() {
+		SHIP.setX(REMOVAL_LOCATION);
 	}
 	
 }

@@ -43,7 +43,6 @@ public class Beam extends Projectile {
 		return BEAM.getY();
 	}
 
-
 	@Override
 	public Rectangle getSelf() {
 		return BEAM;
