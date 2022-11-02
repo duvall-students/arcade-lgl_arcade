@@ -32,8 +32,7 @@ public class GalagaLevel2 extends GalagaLevel {
 
 	@Override
 	protected Ship getShip() {
-		//return ship (ship class is not made)
-		return null;
+		return ship;
 	}
 
 	@Override

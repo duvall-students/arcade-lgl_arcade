@@ -29,7 +29,7 @@ public class GalagaLevel1 extends GalagaLevel{
 	@Override
 	protected void initialSetup(int width, int height, ArrayList<Drawable> drawables, ArrayList<Movable> movables,
 			ArrayList<Collidable> collidables) {
-	//	ship = new Ship(width / 2, (int)(height * shipYPositionFactor));
+		ship = new Ship(width / 2, (int)(height * shipYPositionFactor));
 		myEnemies = initilizeEnemies(ENEMY_ROWS, ENEMY_COLUMNS, 5, 5, width);
 		
 		drawables.add(ship);
