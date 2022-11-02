@@ -15,6 +15,8 @@ public class Paddle extends Player {
 	public static final int PADDLE_SPEED = 20;
 	private final Rectangle PADDLE;
 	
+	public static final int REMOVAL_LOCATION = -5000;
+	
 	public Paddle(int x, int y) {
 		PADDLE = new Rectangle(x,y,PADDLE_WIDTH,PADDLE_HEIGHT);
 	}
@@ -35,7 +37,7 @@ public class Paddle extends Player {
 			PADDLE.setX(PADDLE.getX() + PADDLE_SPEED);
 		}
 	}
-
+	
 	@Override
 	public double getXCoordinate() {
 		return PADDLE.getX();
@@ -48,18 +50,22 @@ public class Paddle extends Player {
 
 	@Override
 	public Rectangle getHitBox() {
-		return null;
+		return new Rectangle(PADDLE.getX(), PADDLE.getY(), PADDLE.getWidth(), PADDLE.getHeight());
 	}
 
 	@Override
 	public void handleCollision(Collidable collidable) {
-		
+		remove();
 	}
 
 	@Override
 	public Rectangle getSelf() {
-		return null;
+		return PADDLE;
 	}
-
+	
+	@Override
+	public void remove() {
+		PADDLE.setX(REMOVAL_LOCATION);
+	}
 }
 
