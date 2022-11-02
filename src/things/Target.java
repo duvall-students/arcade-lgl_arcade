@@ -3,7 +3,7 @@ package things;
 import javafx.scene.shape.Rectangle;
 
 public abstract class Target implements Collidable, Drawable {
-
+	
 	//Returns the bounds of the respective target
 	public abstract Rectangle getHitBox();
 	
