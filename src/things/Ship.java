@@ -5,6 +5,10 @@ import javafx.scene.shape.Shape;
 
 public class Ship extends Player {
 
+	public boolean wasHit() {
+		return false;
+	}
+	
 	@Override
 	public Rectangle getHitBox() {
 		return null;
@@ -12,7 +16,6 @@ public class Ship extends Player {
 
 	@Override
 	public void handleCollision(Collidable collidable) {
-		
 	}
 
 	@Override
@@ -26,7 +29,7 @@ public class Ship extends Player {
 	}
 
 	@Override
-	public Shape getSelf() {
+	public Rectangle getSelf() {
 		return null;
 	}
 	

@@ -5,17 +5,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import ui.GameView;
 
 public abstract class Player implements Collidable, Drawable  {
 
-public abstract double getXCoordinate();
-	
-public abstract double getYCoordinate();
+	public abstract double getXCoordinate();
 
-	
-	public abstract Rectangle getSelf();
-	
-	
-	
+	public abstract double getYCoordinate();
+
+	public abstract Shape getSelf();
+
+
+
 }
