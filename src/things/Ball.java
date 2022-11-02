@@ -25,19 +25,19 @@ public class Ball extends Projectile {
 	private double xVelocity = 0;
 	private double yVelocity = 2;
 	private Point2D myVelocity;
-	Circle ball;
+	Circle BALL;
 
 	public Ball() {
-		ball = new Circle();
-		ball.setRadius(BALL_RADIUS);
-		ball.setCenterX(GameView.SIZE/2);
-		ball.setCenterY(GameView.SIZE/2);
-		ball.setFill(BALL_COLOR);
+		BALL = new Circle();
+		BALL.setRadius(BALL_RADIUS);
+		BALL.setCenterX(GameView.SIZE/2);
+		BALL.setCenterY(GameView.SIZE/2);
+		BALL.setFill(BALL_COLOR);
 		myVelocity = new Point2D(xVelocity, yVelocity);
 	}
 
 	public Circle getCircle() {
-		return ball;
+		return BALL;
 	}
 
 	// Change the direction of the ball after a bounce is determined to be horizontal or vertical
@@ -69,19 +69,19 @@ public class Ball extends Projectile {
 	// Getters for X and Y Coordinates 
 	@Override
 	public double getXCoordinate() {
-		return ball.getCenterX();
+		return BALL.getCenterX();
 	}
 
 	@Override
 	public double getYCoordinate() {
-		return ball.getCenterY();
+		return BALL.getCenterY();
 	}
 	
 	// Main move method
 	@Override
 	public void move() {
-		ball.setCenterX(ball.getCenterX()+myVelocity.getX());
-		ball.setCenterY(ball.getCenterY()+myVelocity.getY());
+		BALL.setCenterX(BALL.getCenterX()+myVelocity.getX());
+		BALL.setCenterY(BALL.getCenterY()+myVelocity.getY());
 	}
 
 	@Override
@@ -89,13 +89,13 @@ public class Ball extends Projectile {
 	}
 
 	@Override
-	public Rectangle getHitBox() {
-		return null;
+	public Circle getHitBox() {
+		return new Circle(BALL_RADIUS);
 	}
 
 	@Override
 	public Circle getSelf() {
-		return ball;
+		return BALL;
 	}
 
 }

@@ -1,6 +1,7 @@
 package things;
 
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 /**
  * This is used to group all the colliding things
@@ -11,7 +12,7 @@ import javafx.scene.shape.Rectangle;
 
 public interface Collidable {
 	
-	public Rectangle getHitBox();
+	public Shape getHitBox();
 	
 	public void handleCollision(Collidable collidable);
 

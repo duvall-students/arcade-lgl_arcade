@@ -12,7 +12,7 @@ public abstract class Projectile implements Collidable, Drawable, Movable  {
 
 	public abstract void move();
 	
-	public abstract Rectangle getHitBox();
+	public abstract Shape getHitBox();
 	
 	public abstract double getXCoordinate();
 	

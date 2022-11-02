@@ -61,6 +61,5 @@ public class Paddle extends Player {
 		return null;
 	}
 
-
 }
 
