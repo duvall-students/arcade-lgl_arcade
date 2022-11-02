@@ -12,6 +12,8 @@ import javafx.scene.shape.Shape;
 
 public interface Collidable {
 	
+	public static final int REMOVAL_LOCATION = -5000;
+	
 	public Shape getHitBox();
 	
 	public void handleCollision(Collidable collidable);
