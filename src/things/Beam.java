@@ -31,12 +31,10 @@ public class Beam extends Projectile {
 	public void move() {
 	}
 
-
 	@Override
 	public double getXCoordinate() {
 		return BEAM.getX();
 	}
-
 
 	@Override
 	public double getYCoordinate() {
@@ -46,5 +44,10 @@ public class Beam extends Projectile {
 	@Override
 	public Rectangle getSelf() {
 		return BEAM;
+	}
+
+	@Override
+	public void remove() {
+		PADDLE.setX(REMOVAL_LOCATION);
 	}
 }
