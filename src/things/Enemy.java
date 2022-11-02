@@ -20,7 +20,6 @@ public class Enemy extends Target implements Movable, Drawable {
 	private Point2D myVelocity;
 	private int ticker;
 	
-	public static final int REMOVAL_LOCATION = -5000;
 	
 	public Enemy(int positionX, int positionY, int width, int height) {
 		enemy = new Rectangle(width, height, Color.BLACK);

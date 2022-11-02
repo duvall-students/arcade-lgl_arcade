@@ -15,7 +15,7 @@ import things.Ship;
  */
 
 public class GalagaLevel1 extends GalagaLevel{
-	
+
 	private Ship ship;
 	private Enemy[] myEnemies;
 	
@@ -49,7 +49,5 @@ public class GalagaLevel1 extends GalagaLevel{
 	@Override
 	protected Enemy[] getEnemies() {
 		return myEnemies;
-	}
-
-	
+	}	
 }

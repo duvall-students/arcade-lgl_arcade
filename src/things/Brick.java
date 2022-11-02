@@ -17,7 +17,6 @@ public class Brick extends Target {
 	
 	private Paint brickColor = setRandomColor();
 	private Rectangle brick;
-	public static final int REMOVAL_LOCATION = -5000;
 	
 	
 	public Brick(int positionX, int positionY, int width, int height) {
