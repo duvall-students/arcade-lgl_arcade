@@ -16,6 +16,4 @@ public abstract class Player implements Collidable, Drawable  {
 
 	public abstract Shape getSelf();
 
-
-
 }

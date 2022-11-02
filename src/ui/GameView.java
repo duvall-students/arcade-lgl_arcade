@@ -21,8 +21,6 @@ import levels.Level;
  *
  */
 
-
-
 public class GameView extends Application {
 	
 	public static final Paint BACKGROUND = Color.AZURE;
