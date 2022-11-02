@@ -1,31 +1,36 @@
 package things;
 
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class Ship extends Player {
 
+	public boolean wasHit() {
+		return false;
+	}
+	
 	@Override
 	public Rectangle getHitBox() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void handleCollision(Collidable collidable) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public double getXcoordinate() {
-		// TODO Auto-generated method stub
+	public double getXCoordinate() {
 		return 0;
 	}
 
 	@Override
-	public double getYcoordinate() {
-		// TODO Auto-generated method stub
+	public double getYCoordinate() {
 		return 0;
+	}
+
+	@Override
+	public Rectangle getSelf() {
+		return null;
 	}
 	
 }

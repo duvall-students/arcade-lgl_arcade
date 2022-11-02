@@ -11,11 +11,11 @@ public class Beam extends Projectile {
 	public static final int BEAM_WIDTH = 10;
 	public static final int BEAM_HEIGHT = 50;
 	public static final int BEAM_SPEED = 100;
-	private final Rectangle BEAM;
+	private final Rectangle beam;
 	
 	
 	public Beam(int x, int y) {
-		BEAM = new Rectangle(x,y,BEAM_WIDTH,BEAM_HEIGHT);
+		beam = new Rectangle(x,y,BEAM_WIDTH,BEAM_HEIGHT);
 	}
 	
 	@Override
@@ -34,18 +34,18 @@ public class Beam extends Projectile {
 
 	@Override
 	public double getXCoordinate() {
-		return BEAM.getX();
+		return beam.getX();
 	}
 
 
 	@Override
 	public double getYCoordinate() {
-		return BEAM.getY();
+		return beam.getY();
 	}
 
 
 	@Override
-	public double getSelf() {
-		return 0;
+	public Rectangle getSelf() {
+		return beam;
 	}
 }

@@ -69,10 +69,10 @@ public abstract class GalagaLevel extends Level {
 	//The beam code is basically adding a beam to the all relevant groups then redrawing the level to include the beam
 	private void handleKeyInput(KeyCode code) {
 		if (code.equals(KeyCode.UP)) {
-		//	Beam fired = new Beam(ship.getXcoordinate(),ship.getYcoordinate());
-		//	drawables.add(fired);
-		//	movables.add(fired);
-		//	collidables.add(fired);
+			Beam fired = new Beam((int) getShip().getXcoordinate(),(int) getShip().getYcoordinate());
+			drawables.add(fired);
+			movables.add(fired);
+			collidables.add(fired);
 			super.setupGame((int) getScene().getWidth(),(int) getScene().getHeight(), getScene().getFill(), drawables, getShip());
 		}
 	}
