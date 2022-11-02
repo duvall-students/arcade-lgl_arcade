@@ -9,9 +9,10 @@ import ui.GameView;
 
 public abstract class Player implements Collidable, Drawable  {
 
-public abstract double getXcoordinate();
+public abstract double getXCoordinate();
 	
-public abstract double getYcoordinate();
+public abstract double getYCoordinate();
+
 	
 	public abstract Rectangle getSelf();
 	

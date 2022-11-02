@@ -40,17 +40,6 @@ public class Ball extends Projectile {
 		return ball;
 	}
 
-	// Getters for X and Y Coordinates 
-	@Override
-	public double getXCoordinate() {
-		return ball.getCenterX();
-	}
-
-	@Override
-	public double getYCoordinate() {
-		return ball.getCenterY();
-	}
-
 	// Change the direction of the ball after a bounce is determined to be horizontal or vertical
 	public void changeCourse(boolean isHorizontalBounce) {
 		if(isHorizontalBounce) {
@@ -67,13 +56,6 @@ public class Ball extends Projectile {
 		}
 	}
 
-	// Main move method
-	@Override
-	public void move() {
-		ball.setCenterX(ball.getCenterX()+myVelocity.getX());
-		ball.setCenterY(ball.getCenterY()+myVelocity.getY());
-	}
-
 	// changeCourse helper method
 	private double positiveOrNegative() {
 		if(Math.random() > 0.5) {
@@ -82,6 +64,38 @@ public class Ball extends Projectile {
 		else {
 			return -2;
 		}
+	}
+	
+	// Getters for X and Y Coordinates 
+	@Override
+	public double getXCoordinate() {
+		return ball.getCenterX();
+	}
+
+	@Override
+	public double getYCoordinate() {
+		return ball.getCenterY();
+	}
+	
+	// Main move method
+	@Override
+	public void move() {
+		ball.setCenterX(ball.getCenterX()+myVelocity.getX());
+		ball.setCenterY(ball.getCenterY()+myVelocity.getY());
+	}
+
+	@Override
+	public void handleCollision(Collidable collidable) {	
+	}
+
+	@Override
+	public Rectangle getHitBox() {
+		return null;
+	}
+
+	@Override
+	public Circle getSelf() {
+		return ball;
 	}
 
 }
