@@ -6,6 +6,7 @@ import javafx.scene.paint.Paint;
 import things.Collidable;
 import things.Drawable;
 import things.Enemy;
+import things.GalagaPowerUp;
 import things.Movable;
 import things.Ship;
 
@@ -20,6 +21,7 @@ public class GalagaLevel3 extends GalagaLevel {
 
 	private Ship ship;
 	private Enemy[] myEnemies;
+	private GalagaPowerUp powerUp;
 	
 	
 	private double shipYPositionFactor = .75;
@@ -47,6 +49,11 @@ public class GalagaLevel3 extends GalagaLevel {
 	
 		//	drawables.add(ship);
 		collidables.add(ship);
+		
+		powerUp = new GalagaPowerUp(width / 2, height / 2);
+		
+		drawables.add(powerUp);
+		collidables.add(powerUp);
 		
 		for (Enemy enemy : myEnemies) {
 			drawables.add(enemy);
