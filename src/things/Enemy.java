@@ -36,7 +36,7 @@ public class Enemy extends Target implements Movable, Drawable {
 		ticker++;
 		enemy.setX(enemy.getX()+myVelocity.getX());
 		if(ticker % 300 == 0) {
-			enemy.setY(enemy.getY() - 25);
+			enemy.setY(enemy.getY() + 25);
 		}
 	}
 	
