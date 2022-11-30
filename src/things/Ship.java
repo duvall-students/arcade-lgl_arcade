@@ -1,5 +1,6 @@
 package things;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -25,13 +26,18 @@ public class Ship extends Player {
 	}
 	
 	@Override
+	public void handleKeyInput (KeyCode code) {
+		if (code == KeyCode.LEFT) {
+			SHIP.setX(SHIP.getX() - SHIP_SPEED);
+		}
+		else if (code == KeyCode.RIGHT) {
+			SHIP.setX(SHIP.getX() + SHIP_SPEED);
+		}
+	}
+	
+	@Override
 	public Rectangle getHitBox() {
 		return new Rectangle(SHIP.getX(), SHIP.getY(), SHIP.getWidth(), SHIP.getHeight());
-	}
-
-	@Override
-	public void handleCollision(Collidable collidable) {
-		remove();
 	}
 
 	@Override
@@ -47,6 +53,11 @@ public class Ship extends Player {
 	@Override
 	public Rectangle getSelf() {
 		return SHIP;
+	}
+	
+	@Override
+	public void handleCollision(Collidable collidable) {
+		remove();
 	}
 	
 	@Override

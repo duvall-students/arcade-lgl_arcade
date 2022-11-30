@@ -29,6 +29,7 @@ public class Paddle extends Player {
 		return PADDLE;
 	}
 	
+	@Override
 	public void handleKeyInput (KeyCode code) {
 		if (code == KeyCode.LEFT) {
 			PADDLE.setX(PADDLE.getX() - PADDLE_SPEED);
